@@ -21,14 +21,14 @@ nav h1{
 } 
 .box-un{
   border: solid 1px rgb(168, 166, 166);
-  width: 100%;
+  width: 80%;
   background-color: white;
   margin-right: 20px;
 }
 .mes-box{
   display: flex;
-  width: 1000px;
-  margin:0 auto ;
+  width: 90%;
+  margin:auto ;
   overflow: hidden;
   padding: 10px;
   
@@ -113,22 +113,32 @@ select{
   padding-right: 30px;
    }
   img{
-     width: 100px;
-     height: 100px;
+     width: 130px;
+     height: 130px;
      border-radius: 50%;
      margin: 30px;
    }
 .box-trois{
   display: flex;
-  /*justify-content: space-between;*/
+  flex-direction: row;
   border: solid 2px #C4C4C4;
+
 }
 .texte{
+  display: flex;
+  flex-direction: column;
   text-align: justify;
   width: 80%;
-  margin-right: 10px;
+  margin-left: 30px;
+  margin-top: 30px;
   color:#555555;
   
+}
+.information{
+  display: flex;
+}
+.nom{
+  margin-left: 10px;
 }
 .fa-trash-can{
   color:red;
@@ -136,6 +146,10 @@ select{
 }
 .fa-solid{
   margin-left: 10px;
+}
+.icone{
+  display: flex;
+  margin: 40px;
 }
 
   
@@ -165,36 +179,38 @@ select{
 .glisser header{
   color: #555555;
 }
+.modifiertext{
+  background-color: blue;
+  border: none;
+  padding: 10px;
+  margin:10px;
+  color:white;
+  text-decoration: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 15px;
+  cursor:pointer;
+  border-radius: 5px;
+
+
+
+  
+}
 span{
   color: #555555;
 }
 @media screen and (max-width:750px){
-  body{
-    width: 100%;
-    height: 100%;
-  }
+
   .mes-box{
     display: flex;
     flex-direction: column;
-    width: 70%;
-    height: 100%;
-  }
-  .box-trois{
-    height: 700px;
-    display: flex;
-  justify-content: space-between;
-  border: solid 2px #C4C4C4;
-    
+    width: 100%;
+    margin: 40px;
 
-  
-  
   }
-  .texte{
-    text-align: justify;
-    margin-right: 10px;
-    color:#555555;
-    height: 0px;
-  
-}
+  .contact{
+    width: 80%;
+  }
+ 
 
 }

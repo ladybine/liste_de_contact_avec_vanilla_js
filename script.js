@@ -1,9 +1,12 @@
 
+
+let idAModifier="";
 const gliss = document.querySelector(".glisser"),
   dragText = gliss.querySelector("header"),
   button = gliss.querySelector("button"),
   input = gliss.querySelector("input");
-let file;
+
+  let file;
 button.onclick = () => {
   input.click();
 }
@@ -46,38 +49,109 @@ function showFile() {
 }
 
 
-let boutoncreer = document.querySelector(".creer");
-let contact = document.querySelector(".box-trois");
+const rest=document.querySelector(".reinit")
+rest.addEventListener('click',()=>{
+  document.querySelector('#photo').remove();
+  gliss.innerHTML+=`<header>Deplacer la photo ici </header>
+  <span>Ou</span>
+  <button>Télecharger</button>`
 
-boutoncreer.addEventListener("click", (e) => {
-  e.preventDefault();
+})
 
-  let prenom = document.getElementById("prenom").value;
+
+  let boutoncreer = document.querySelector(".creer");
+  let contact = document.querySelector(".box-trois");
+  
+  boutoncreer.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    
+
+    let prenom = document.getElementById("prenom").value;
   let nom = document.getElementById("nom").value;
   let groupe = document.getElementById("groupe").value;
   let telephone = document.getElementById("telephone").value;
   let bio = document.getElementById("bio").value;
-  let photo=document.getElementById("photo").src;
+  let photo = document.getElementById("photo").src;
+
+
+  document.getElementById("prenom").value='';
+  document.getElementById("nom").value='';
+  document.getElementById("groupe").value='';
+ document.getElementById("telephone").value='';
+  document.getElementById("bio").value='';
+  document.getElementById("email").value='';
+ document.getElementById("photo").src='';
+ 
  
 
+  if(idAModifier===""){  
+  
+  let id=generate();
+
   let list = `    
-  <div class="box-trois">
-  <img src=${photo}>
+  <div class="box-trois" id="${id}">
+  <img src=${photo} class="photo">
   <div class="texte">
-    <h3>${prenom} ${nom}-${groupe}  <i class="fa-solid fa-user-pen"></i><i id="delete"onclick="onDelete (this)" class="fa-solid fa-trash-can"></i></h3>
+  <div class="information">
+    <p class="prenom">${prenom}</p>
+    <p class="nom">${nom}</p> <p>-</p> 
+    <p class="groupe">${groupe}<p>
+    </div>
     <div id="phone">${telephone}</div>
-    <p>${bio}</p>
+    <p class="bio">${bio}</p>
+  </div>
+  <div class="icone">
+  <i id="modifier" onclick="modifier(this, '${id}')" class="fa-solid fa-user-pen"></i><i id="delete"onclick="onDelete(this)" class="fa-solid fa-trash-can"></i>
   </div>
 </div>
-  
-
-
-`
+`;
   let contact = document.querySelector(".contact")
   contact.innerHTML += list
+} else {
+  document.querySelector(`#${idAModifier} .prenom`).textContent = prenom;
+document.querySelector(`#${idAModifier} .nom`).textContent = nom;
+document.querySelector(`#${idAModifier} #phone`).textContent = telephone;
+document.querySelector(`#${idAModifier} .bio`).textContent = bio;
+
+  
+} 
+idAModifier="";
+let creer=document.querySelector(".modifiertext");
+creer.textContent="créer";
+
+
 });
-function onDelete(del){
-  supprimer= del.parentElement.parentElement.parentElement;
-  supprimer.remove();
+function generate() {
+    return 'id-' + Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+  }
+
+
+
+function onDelete(del) {
+supprimer = del.parentElement.parentElement;
+supprimer.remove();
+    
+}
+
+
+function modifier(mod, id){
+change=mod.parentElement.parentElement;
+
+document.getElementById("prenom").value=change.querySelector(".prenom").innerHTML;
+document.getElementById("nom").value=change.querySelector(".nom").innerHTML;
+document.getElementById("groupe").value=change.querySelector(".groupe").innerHTML;
+document.getElementById("telephone").value=change.querySelector("#phone").innerHTML;
+document.getElementById("bio").value=change.querySelector(".bio").innerHTML;
+
+//document.getElementById("photo").src=change.querySelector("#photo").src;
+let modifier=document.querySelector(".creer");
+modifier.textContent="modifier";
+modifier.className="modifiertext";
+idAModifier=id.toString();
+
+
 }
 
